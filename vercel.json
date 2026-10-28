@@ -1,5 +1,5 @@
 {
-  "rewrites": [{ "source": "/api/:path*", "destination": "http://api.favorit-parts.ru/:path*" }],
+  "rewrites": [{ "source": "/api/:path*", "destination": "https://api.favorit-parts.ru/:path*" }],
   "headers": [
     {
       "source": "/(.*)",
