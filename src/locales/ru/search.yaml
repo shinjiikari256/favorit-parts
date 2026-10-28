@@ -1,0 +1,56 @@
+title: Поиск по артикулу
+form.label: Артикул детали
+form.placeholder: Введите номер детали
+form.submit: Найти
+form.submitting: Поиск…
+form.clear: Очистить поле
+brands.title: Производители
+brands.hint: Выберите производителя, чтобы увидеть аналоги и предложения
+brands.empty: По номеру «{{number}}» ничего не найдено
+brands.showAll: Показать всех ({{count}})
+brands.hide: Скрыть
+offers.title: Аналоги и предложения
+offers.inStockOnly: Только в наличии
+offers.empty: Для производителя «{{brand}}» предложений не найдено
+offers.emptyInStock: Нет позиций в наличии. Отключите фильтр «Только в наличии», чтобы увидеть все
+offers.columns.warehouses: Склады
+offers.columns.name: Название / Производитель
+offers.columns.price: Цена
+offers.columns.stock: Остаток
+offers.sort.label: Сортировка
+offers.sort.default: По умолчанию
+offers.sort.priceAsc: Цена по возрастанию
+offers.sort.priceDesc: Цена по убыванию
+offers.sort.stockAsc: Остаток по возрастанию
+offers.sort.stockDesc: Остаток по убыванию
+offers.origin: Искомая
+offers.analogue: Аналог
+offers.best: Лучшая цена
+offers.stock_one: "{{count}} шт."
+offers.stock_few: "{{count}} шт."
+offers.stock_many: "{{count}} шт."
+offers.stock_other: "{{count}} шт."
+offers.fromLabel: от
+offers.warehouse.toggle: "Склады: {{count}}"
+offers.warehouse.name: Склад
+offers.warehouse.moscowTime: "{{time}} МСК"
+offers.warehouse.shipmentValue: Отгрузка {{date}}, если заказать до {{time}} {{tz}}
+offers.warehouse.own: Наш склад
+offers.copy: Скопировать артикул
+offers.copied: Скопировано
+offers.copyFailed: Не удалось скопировать
+offers.number: "Артикул: {{number}}"
+loading: Загрузка…
+retry: Повторить
+errors.title: Не удалось выполнить запрос
+errors.emptyKey: Не указан ключ покупателя
+errors.invalidKey: Неверный ключ покупателя
+errors.emptyNumber: Не указан номер детали
+errors.quota: Превышен лимит запросов. Попробуйте позже
+errors.network: Нет связи с сервисом. Проверьте подключение и повторите попытку
+errors.unknown: Что-то пошло не так. Повторите попытку позже
+errors.boundary: Произошла ошибка интерфейса
+errors.reload: Перезагрузить страницу
+errors.fix.emptyKey: Проверьте ключ API в настройках (иконка ключа в шапке)
+errors.fix.invalidKey: Проверьте ключ API в настройках (иконка ключа в шапке)
+errors.fix.emptyNumber: Исправьте номер детали и повторите поиск

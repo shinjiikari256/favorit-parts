@@ -1,0 +1,13 @@
+node_modules
+dist
+build
+coverage
+.vscode
+*.log
+public
+orval/*.yaml
+src/assets/fonts
+working
+.vitest
+playwright-report
+test-results

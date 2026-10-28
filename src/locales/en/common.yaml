@@ -1,0 +1,24 @@
+app.title: Parts search
+app.subtitle: Favorit Parts
+language.label: Language
+language.ru: RU
+language.en: EN
+theme.label: Theme
+theme.dark: Dark
+theme.palette.red: Red
+theme.palette.blue: Blue
+theme.palette.emerald: Emerald
+theme.palette.amber: Amber
+theme.styleLabel: Style
+theme.style.favorit: Favorit
+theme.style.blueprint: Drawing
+theme.style.furrow: Soft
+settings.mode: Mode
+settings.light: Light
+settings.palette: Color
+settings.apiKey: API key
+settings.apiKeyLabel: API key
+settings.apiKeyHint: Empty field uses the default key. Applied immediately
+settings.apiKeyClear: Clear field
+settings.apiKeyInvalid: "Incomplete key: 36 characters required"
+settings.apiKeyApplied: Key applied, search refreshed

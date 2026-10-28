@@ -1,0 +1,102 @@
+/* Тема = стиль (data-style: поверхности, формы, шрифт) + палитра (data-palette: акцент) + режим (.dark).
+   Палитра задаёт акцент (data-palette выставляется всегда); стиль его не переопределяет.
+   Селекторы с :root повышают специфичность над базовым :root из index.css. */
+
+/* ---------- Палитры (акцент) ---------- */
+
+:root[data-palette="red"] {
+  --primary: oklch(58.151% 0.23341 19.554);
+  --primary-hover: oklch(54.254% 0.21139 16.363);
+  --primary-focus: oklch(52.19% 0.20416 16.746);
+  --light-primary: oklch(97.053% 0.01292 16.91);
+}
+
+:root[data-palette="blue"] {
+  --primary: oklch(46.6% 0.139 252.3);
+  --primary-hover: oklch(42% 0.139 252.3);
+  --primary-focus: oklch(38% 0.139 252.3);
+  --light-primary: oklch(95% 0.025 252.3);
+}
+
+:root[data-palette="emerald"] {
+  --primary: oklch(50% 0.13 160);
+  --primary-hover: oklch(46% 0.13 160);
+  --primary-focus: oklch(43% 0.13 160);
+  --light-primary: oklch(96% 0.03 160);
+}
+
+:root[data-palette="amber"] {
+  --primary: oklch(72% 0.16 70);
+  --primary-foreground: oklch(22% 0.03 70);
+  --primary-hover: oklch(68% 0.16 70);
+  --primary-focus: oklch(64% 0.16 70);
+  --light-primary: oklch(97% 0.04 80);
+}
+
+:root[data-palette] {
+  --accent: var(--light-primary);
+  --ring: var(--primary);
+}
+
+/* ---------- Тёмный режим: общие токены ---------- */
+
+:root.dark {
+  color-scheme: dark;
+  /* светлее светлых значений: текст алертов на тёмной подложке должен давать не менее 4,5:1 */
+  --error: oklch(85% 0.1 22);
+  --destructive: var(--error);
+  --background: oklch(0.2 0.015 285);
+  --foreground: oklch(0.95 0.005 285);
+  --background-gray: oklch(0.15 0.015 285);
+  --card: oklch(0.22 0.015 285);
+  --card-foreground: oklch(0.95 0.005 285);
+  --muted: oklch(0.28 0.015 285);
+  --muted-foreground: oklch(0.74 0.015 285);
+  --accent-foreground: oklch(0.95 0.005 285);
+  --border: oklch(0.32 0.015 285);
+  --input: oklch(0.25 0.015 285);
+  --primary-black: oklch(0.95 0.005 285);
+
+  --primary: oklch(68% 0.2 20);
+  --primary-hover: oklch(72% 0.2 20);
+  --primary-focus: oklch(75% 0.2 20);
+  --primary-foreground: oklch(0.16 0.04 20);
+  --light-primary: oklch(0.3 0.07 20);
+  --accent: var(--light-primary);
+  --ring: var(--primary);
+  --success: oklch(72% 0.15 150);
+}
+
+/* ---------- Палитры в тёмном режиме ---------- */
+
+:root.dark[data-palette="red"] {
+  --primary: oklch(68% 0.2 20);
+  --primary-hover: oklch(72% 0.2 20);
+  --primary-focus: oklch(75% 0.2 20);
+  --primary-foreground: oklch(0.16 0.04 20);
+  --light-primary: oklch(0.3 0.07 20);
+}
+
+:root.dark[data-palette="blue"] {
+  --primary: oklch(68% 0.13 252.3);
+  --primary-hover: oklch(72% 0.13 252.3);
+  --primary-focus: oklch(76% 0.13 252.3);
+  --primary-foreground: oklch(0.15 0.05 252.3);
+  --light-primary: oklch(0.3 0.07 252.3);
+}
+
+:root.dark[data-palette="emerald"] {
+  --primary: oklch(74% 0.14 160);
+  --primary-hover: oklch(78% 0.14 160);
+  --primary-focus: oklch(81% 0.14 160);
+  --primary-foreground: oklch(0.15 0.04 160);
+  --light-primary: oklch(0.3 0.06 160);
+}
+
+:root.dark[data-palette="amber"] {
+  --primary: oklch(78% 0.15 75);
+  --primary-hover: oklch(82% 0.15 75);
+  --primary-focus: oklch(85% 0.15 75);
+  --primary-foreground: oklch(0.2 0.03 75);
+  --light-primary: oklch(0.32 0.06 75);
+}

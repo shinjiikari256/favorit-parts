@@ -1,0 +1,54 @@
+title: Search by part number
+form.label: Part number
+form.placeholder: Enter a part number
+form.submit: Search
+form.submitting: Searching…
+form.clear: Clear field
+brands.title: Manufacturers
+brands.hint: Select a manufacturer to see analogues and offers
+brands.empty: Nothing found for number "{{number}}"
+brands.showAll: Show all ({{count}})
+brands.hide: Hide
+offers.title: Analogues and offers
+offers.inStockOnly: In stock only
+offers.empty: No offers found for "{{brand}}"
+offers.emptyInStock: Nothing in stock. Turn off “In stock only” to see everything
+offers.columns.warehouses: Warehouses
+offers.columns.name: Name / Manufacturer
+offers.columns.price: Price
+offers.columns.stock: In stock
+offers.sort.label: Sort by
+offers.sort.default: Default
+offers.sort.priceAsc: Price, low to high
+offers.sort.priceDesc: Price, high to low
+offers.sort.stockAsc: Stock, low to high
+offers.sort.stockDesc: Stock, high to low
+offers.origin: Requested
+offers.analogue: Analogue
+offers.best: Best price
+offers.stock_one: "{{count}} pc."
+offers.stock_other: "{{count}} pcs."
+offers.fromLabel: from
+offers.warehouse.toggle: "Warehouses: {{count}}"
+offers.warehouse.name: Warehouse
+offers.warehouse.moscowTime: "{{time}} MSK"
+offers.warehouse.shipmentValue: Ships {{date}}, if ordered by {{time}} {{tz}}
+offers.warehouse.own: Own warehouse
+offers.copy: Copy part number
+offers.copied: Copied
+offers.copyFailed: Could not copy
+offers.number: "Part number: {{number}}"
+loading: Loading…
+retry: Retry
+errors.title: Request failed
+errors.emptyKey: Customer key is missing
+errors.invalidKey: Invalid customer key
+errors.emptyNumber: Part number is missing
+errors.quota: Request limit exceeded. Please try again later
+errors.network: Cannot reach the service. Check your connection and try again
+errors.unknown: Something went wrong. Please try again later
+errors.boundary: An interface error occurred
+errors.reload: Reload page
+errors.fix.emptyKey: Check the API key in settings (key icon in the header)
+errors.fix.invalidKey: Check the API key in settings (key icon in the header)
+errors.fix.emptyNumber: Fix the part number and search again

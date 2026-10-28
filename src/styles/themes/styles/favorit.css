@@ -1,0 +1,105 @@
+/* favorit — фирменный стиль favorit-parts.ru: синий #035aa4, тёмно-синяя «шапка», светлая лавандовая подложка,
+   Roboto, почти квадратные углы, плоские белые блоки, заглавные подписи кнопок и колонок */
+:root[data-style="favorit"] {
+  --radius: 0.125rem;
+  --app-font: "Roboto", ui-sans-serif, sans-serif;
+  --font-display: var(--app-font);
+  --background: oklch(100% 0 0);
+  --foreground: oklch(22% 0.03 255);
+  --background-gray: oklch(95.9% 0.012 276);
+  --card: oklch(100% 0 0);
+  --card-foreground: var(--foreground);
+  --muted: oklch(95.9% 0.012 276);
+  --muted-foreground: oklch(52% 0.025 258);
+  --border: oklch(89% 0.02 260);
+  --input: oklch(100% 0 0);
+  --accent-foreground: var(--foreground);
+  --success: oklch(48% 0.11 150);
+  --brand-surface-foreground: oklch(100% 0 0);
+}
+:root.dark[data-style="favorit"] {
+  --background: oklch(25% 0.035 252);
+  --foreground: oklch(96% 0.01 252);
+  --background-gray: oklch(14% 0.03 252);
+  --card: oklch(25% 0.035 252);
+  --muted: oklch(30% 0.04 252);
+  --muted-foreground: oklch(76% 0.025 252);
+  --border: oklch(34% 0.04 252);
+  --input: oklch(19% 0.035 252);
+  --success: oklch(74% 0.13 150);
+}
+/* фон шапки — затемнённый акцент выбранной палитры */
+:root[data-style="favorit"] {
+  --brand-surface: color-mix(in oklab, var(--primary) 55%, oklch(0 0 0));
+}
+:root.dark[data-style="favorit"] {
+  --brand-surface: color-mix(in oklab, var(--primary) 22%, oklch(0 0 0));
+}
+/* шапка — тёмно-синяя «фотоплашка» с белым текстом и крупным заглавным заголовком */
+:root[data-style="favorit"] [data-role="header"] {
+  padding: 1.5rem 1.5rem 1.75rem;
+  background: linear-gradient(
+    160deg,
+    var(--brand-surface),
+    color-mix(in oklab, var(--brand-surface) 70%, var(--primary))
+  );
+  color: var(--brand-surface-foreground);
+}
+:root[data-style="favorit"] [data-role="title"] {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+:root[data-style="favorit"] [data-role="header"] .text-muted-foreground {
+  color: color-mix(in oklab, var(--brand-surface-foreground) 72%, transparent);
+}
+:root[data-style="favorit"] [data-role="eyebrow"] {
+  color: color-mix(in oklab, var(--primary) 40%, var(--brand-surface-foreground));
+}
+:root[data-style="favorit"] [data-role="header"] [role="dialog"] {
+  color: var(--card-foreground);
+}
+:root[data-style="favorit"] [data-role="header"] [role="dialog"] .text-muted-foreground {
+  color: var(--muted-foreground);
+}
+/* как на сайте: углы квадратные у кнопок, полей, карточек и «таблеток» */
+:root[data-style="favorit"] .rounded-full,
+:root[data-style="favorit"] [class*="rounded-"],
+:root[data-style="favorit"] [data-slot="skeleton"] {
+  border-radius: 0;
+}
+/* плоские белые блоки на лавандовой подложке, без скруглений */
+:root[data-style="favorit"] [data-slot="card"] {
+  border-color: transparent;
+  box-shadow: 0 2px 10px -2px color-mix(in oklab, var(--foreground) 10%, transparent);
+}
+:root[data-style="favorit"] [data-slot="card-title"] {
+  font-weight: 700;
+}
+:root[data-style="favorit"] [data-slot="input"] {
+  border-color: var(--border);
+}
+:root[data-style="favorit"] [data-slot="button"] {
+  font-weight: 400;
+}
+/* в тёмной теме светлая пастельная заливка кнопки выглядит блёкло — берём затемнённый акцент с белым текстом */
+:root.dark[data-style="favorit"] [data-slot="button"].bg-primary {
+  border-color: color-mix(in oklab, var(--primary) 68%, oklch(0 0 0));
+  background: color-mix(in oklab, var(--primary) 68%, oklch(0 0 0));
+  color: oklch(100% 0 0);
+}
+:root.dark[data-style="favorit"] [data-slot="button"].bg-primary:hover {
+  border-color: color-mix(in oklab, var(--primary) 78%, oklch(0 0 0));
+  background: color-mix(in oklab, var(--primary) 78%, oklch(0 0 0));
+}
+:root[data-style="favorit"] [data-slot="badge"] {
+  border-radius: 0;
+}
+:root[data-style="favorit"] [data-slot="table-head"] {
+  color: var(--primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+:root[data-style="favorit"] [data-slot="table-row"]:hover {
+  background: var(--light-primary);
+}

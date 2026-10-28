@@ -1,0 +1,24 @@
+app.title: Подбор запчастей
+app.subtitle: Favorit Parts
+language.label: Язык
+language.ru: RU
+language.en: EN
+theme.label: Тема
+theme.dark: Тёмная
+theme.palette.red: Красная
+theme.palette.blue: Синяя
+theme.palette.emerald: Изумрудная
+theme.palette.amber: Янтарная
+theme.styleLabel: Стиль
+theme.style.favorit: Фаворит
+theme.style.blueprint: Чертёж
+theme.style.furrow: Мягкая
+settings.mode: Режим
+settings.light: Светлая
+settings.palette: Цвет
+settings.apiKey: Ключ API
+settings.apiKeyLabel: Ключ API
+settings.apiKeyHint: Пустое поле — ключ по умолчанию. Применяется сразу
+settings.apiKeyClear: Очистить поле
+settings.apiKeyInvalid: "Неполный ключ: нужно 36 символов"
+settings.apiKeyApplied: Ключ применён, поиск обновлён

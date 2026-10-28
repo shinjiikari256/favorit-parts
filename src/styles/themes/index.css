@@ -1,0 +1,8 @@
+/* Тема = палитра (data-palette) + режим (.dark) + стиль оформления (data-style).
+   Палитры и тёмные токены — palettes.css; поверхности, формы и детали стилей — styles/*.css.
+   favorit — стиль по умолчанию (data-style выставляется всегда).
+   Порядок важен: стили идут после палитр. */
+@import "./palettes.css";
+@import "./styles/blueprint.css";
+@import "./styles/furrow.css";
+@import "./styles/favorit.css";

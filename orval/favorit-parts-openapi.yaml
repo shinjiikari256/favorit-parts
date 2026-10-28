@@ -1,0 +1,195 @@
+openapi: 3.0.3
+info:
+  title: Favorit Parts — Web-сервис «Проценка»
+  description: |
+    Поиск запчастей, производителей и аналогов. Составлено по документации `wsprice.pdf` (от 06.03.2023).
+
+    Схема работы:
+    1. Запрос только с `number` — вернёт детали с этим номером у разных производителей.
+    2. Запрос с `number`, `brand` и `analogues=on` — вернёт искомую деталь и её аналоги.
+
+    Особенности ответа:
+    - при любой ошибке возвращается объект с единственным полем `error`;
+    - если деталь не найдена — массив `goods` из одного элемента с пустой структурой (`brand: ""`, `count: 0`, `warehouses: []`);
+    - цену верхнего уровня (`goods[].price`) использовать нельзя, цена берётся из `warehouses[].price`.
+  version: 1.0.0
+servers:
+  - url: http://api.favorit-parts.ru
+tags:
+  - name: PRICE
+    description: Проценка
+paths:
+  /hs/hsprice/:
+    get:
+      tags: [PRICE]
+      operationId: pricelistGet
+      summary: Поиск деталей, производителей и аналогов
+      parameters:
+        - name: key
+          in: query
+          required: true
+          description: Уникальный ключ покупателя. Если не передан — ошибка `Empty key!`.
+          schema:
+            type: string
+            example: 00000000-0000-0000-0000-000000000001
+        - name: number
+          in: query
+          required: true
+          description: Номер детали. Спецсимволы нужно кодировать (`#` → `%23`, `&` → `%26`).
+          schema:
+            type: string
+            example: "01089"
+        - name: brand
+          in: query
+          required: false
+          description: Производитель. Если не указан — вернётся список деталей с разными производителями.
+          schema:
+            type: string
+            example: CAFFARO
+        - name: analogues
+          in: query
+          required: false
+          description: Если указать `on` и заполнить `brand` — будут возвращаться аналоги детали.
+          schema:
+            type: string
+            enum: [on]
+        - name: info
+          in: query
+          required: false
+          description: Если указать `on`, то в ответе будет признак невозвратных позиций (`notRefund`).
+          schema:
+            type: string
+            enum: [on]
+      responses:
+        "200":
+          description: Результат поиска либо описание ошибки (`error`)
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/GoodsResponse"
+                  - $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                brands:
+                  summary: Только номер — по элементу на производителя
+                  value:
+                    goods:
+                      - goodsID: 1FAFD0CA-F73E-11DC-AB3E-000E0CE9B9AA
+                        brand: MEYLE
+                        number: 7160500039/S
+                        name: Рычаги задней подвески
+                        count: 20
+                        price: 12533.62
+                        rate: 1
+                        warehouses:
+                          - code: МС2
+                            id: E8C31C27-031C-11E7-80CF-0050568E1762
+                            own: false
+                            price: 12533.62
+                            shipmentDate: "2019-05-31T15:30:00+03:00"
+                            stock: 20
+                notFound:
+                  summary: Деталь не найдена — пустая структура
+                  value:
+                    goods:
+                      - goodsID: 00000000-0000-0000-0000-000000000000
+                        brand: ""
+                        number: ""
+                        name: ""
+                        count: 0
+                        price: 0
+                        rate: 0
+                        warehouses: []
+                error:
+                  summary: Ошибка
+                  value:
+                    error: Empty key!
+components:
+  schemas:
+    Warehouse:
+      type: object
+      description: Склад, на котором имеется товар
+      properties:
+        code:
+          type: string
+          description: Сокращённое наименование склада (имеется не у всех складов)
+        id:
+          type: string
+          description: Внутренний идентификатор склада
+        own:
+          type: boolean
+          description: Товар находится на нашем складе
+        shipmentDate:
+          type: string
+          format: date-time
+          description: Дата и время отгрузки. Дата — дата отгрузки, время — до какого часа можно заказать, чтобы товар отгрузили на эту дату.
+        price:
+          type: number
+          format: double
+          description: Цена на этом складе
+        stock:
+          type: integer
+          description: Остаток на этом складе
+        notRefund:
+          type: boolean
+          description: Невозвратная позиция
+    Goods:
+      type: object
+      properties:
+        goodsID:
+          type: string
+          description: Идентификатор товара
+        brand:
+          type: string
+          description: Производитель
+        number:
+          type: string
+          description: Номер детали
+        name:
+          type: string
+          description: Наименование детали
+        count:
+          type: integer
+          description: Остаток на всех складах
+        price:
+          type: number
+          format: double
+          deprecated: true
+          description: Цена. НЕ ИСПОЛЬЗОВАТЬ — цену нужно брать из конкретного склада, реквизит оставлен для совместимости.
+        rate:
+          type: integer
+          description: Кратность
+        analogues:
+          type: array
+          description: Аналоги (с параметрами как в goods). Возвращается, если переданы `analogues=on` и `brand`.
+          items:
+            $ref: "#/components/schemas/Goods"
+        warehouses:
+          type: array
+          description: Склады, на которых имеется товар
+          items:
+            $ref: "#/components/schemas/Warehouse"
+        notRefund:
+          type: boolean
+          description: Невозвратная позиция
+    GoodsResponse:
+      type: object
+      required: [goods]
+      properties:
+        goods:
+          type: array
+          items:
+            $ref: "#/components/schemas/Goods"
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+          description: |
+            Описание ошибки (может содержать несколько):
+            - `Empty key!` — не указан ключ покупателя
+            - `Invalid key client!` — неверный ключ, покупатель не найден
+            - `Empty number goods!` — не указан номер детали
+            - `Request quota exceeded!` — превышен лимит запросов по грузовому ассортименту
+          example: Empty key!

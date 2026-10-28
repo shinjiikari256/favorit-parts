@@ -1,0 +1,109 @@
+/* blueprint — по теме Blueprint с usehallmark.com: плоская синька (cyanotype), белые линии-волоски,
+   нулевые скругления, Chakra Petch + IBM Plex. Тёмная — оригинал (синька), светлая — нейтральная бумага с синими чернилами. */
+:root[data-style="blueprint"] {
+  --radius: 0;
+  --app-font: "IBM Plex Sans", ui-sans-serif, sans-serif;
+  --font-display: "Chakra Petch", ui-sans-serif, sans-serif;
+  --background: oklch(99% 0.004 252);
+  --foreground: oklch(26% 0.03 255);
+  --background-gray: oklch(96.5% 0.012 252);
+  --card: oklch(100% 0 0);
+  --card-foreground: var(--foreground);
+  --muted: oklch(94% 0.018 252);
+  --muted-foreground: oklch(46% 0.02 255);
+  --border: oklch(78% 0.01 250);
+  --input: oklch(100% 0 0);
+  --accent-foreground: var(--foreground);
+}
+:root.dark[data-style="blueprint"] {
+  --background: oklch(31% 0.1 252);
+  --foreground: oklch(97% 0.012 240);
+  --background-gray: oklch(35% 0.105 252);
+  --card: var(--background);
+  --muted: oklch(26.5% 0.095 252);
+  --muted-foreground: oklch(80% 0.045 244);
+  --border: oklch(93% 0.02 240 / 0.6);
+  --input: var(--muted);
+}
+/* Оттенок поверхностей берётся из акцента палитры (relative color: Chrome 119+, Safari 16.4+, Firefox 128+);
+   в более старых браузерах остаются статичные значения выше (оттенок синей палитры по умолчанию) */
+@supports (color: oklch(from red l c h)) {
+  :root[data-style="blueprint"] {
+    --background: oklch(from var(--primary) 99% 0.004 h);
+    --background-gray: oklch(from var(--primary) 96.5% 0.012 h);
+    --muted: oklch(from var(--primary) 94% 0.018 h);
+  }
+  :root.dark[data-style="blueprint"] {
+    --background: oklch(from var(--primary) 31% min(c, 0.1) h);
+    --background-gray: oklch(from var(--primary) 35% min(c, 0.105) h);
+    --muted: oklch(from var(--primary) 26.5% min(c, 0.095) h);
+  }
+}
+/* фон всего холста (в т.ч. при перетягивании/оверскролле) следует теме, а не только body */
+:root[data-style="blueprint"] {
+  background-color: var(--background-gray);
+  color-scheme: light;
+}
+:root.dark[data-style="blueprint"] {
+  color-scheme: dark;
+}
+:root[data-style="blueprint"] .rounded-full,
+:root[data-style="blueprint"] [data-slot="skeleton"] {
+  border-radius: 0;
+}
+:root[data-style="blueprint"] [data-slot="card"] {
+  box-shadow: none;
+}
+:root[data-style="blueprint"] [data-slot="card-title"],
+:root[data-style="blueprint"] [data-slot="table-head"],
+:root[data-style="blueprint"] [data-role="title"] {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+:root[data-style="blueprint"] [data-slot="table-cell"] {
+  font-variant-numeric: tabular-nums;
+}
+/* ---------- Характерные детали (как на usehallmark.com) ---------- */
+
+/* blueprint: прозрачные карточки, угловые риски на расстоянии (без рамки), размерная линия под заголовком, моно-цифры */
+:root[data-style="blueprint"] [data-slot="card"] {
+  position: relative;
+  margin: 4px;
+  background-color: transparent;
+}
+:root[data-style="blueprint"] [data-slot="card"]::before,
+:root[data-style="blueprint"] [data-slot="card"]::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  border: 0 solid var(--foreground);
+}
+:root[data-style="blueprint"] [data-slot="card"]::before {
+  top: -9px;
+  left: -9px;
+  border-width: 2px 0 0 2px;
+}
+:root[data-style="blueprint"] [data-slot="card"]::after {
+  right: -9px;
+  bottom: -9px;
+  border-width: 0 2px 2px 0;
+}
+:root[data-style="blueprint"] [data-role="title"]::after {
+  content: "";
+  display: block;
+  height: 11px;
+  margin-top: 0.5rem;
+  border-inline: 2px solid currentColor;
+  background: linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat;
+}
+:root[data-style="blueprint"] [data-slot="table-cell"]:not(:first-child),
+:root[data-style="blueprint"] [data-slot="badge"] {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+:root[data-style="blueprint"] [data-slot="table-row"]:hover {
+  background: var(--light-primary);
+}

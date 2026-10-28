@@ -1,0 +1,17 @@
+echo "🎨 Prettier..."
+bun run format:check
+
+echo "🧹 ESLint..."
+bun run lint
+
+echo "🌐 Переводы..."
+bun run i18n:lint
+
+echo "🧪 Тесты и покрытие..."
+bun run test:coverage
+
+echo "🏗️ Сборка проекта..."
+bun run build
+
+echo "🎭 E2E (Playwright)..."
+bun run test:e2e
