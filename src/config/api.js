@@ -2,7 +2,7 @@
  * Базовый URL сервиса (`VITE_API_URL`).
  * @type {string}
  */
-export const API_BASE_URL = import.meta.env.VITE_API_URL || "http://api.favorit-parts.ru";
+export const API_BASE_URL = import.meta.env.VITE_API_URL || "https://api.favorit-parts.ru";
 
 /**
  * Ключ покупателя по умолчанию (`VITE_API_KEY`). Передаётся в каждом запросе.
